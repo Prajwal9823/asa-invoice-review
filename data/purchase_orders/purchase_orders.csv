@@ -1,0 +1,6 @@
+po_number,vendor,approved_amount,currency,status,description
+PO-1001,Northstar Office Supply,1250.00,USD,approved,Quarterly office supplies
+PO-1002,Acme Cloud Services,5000.00,USD,approved,Annual cloud hosting
+PO-1003,Bluebird Logistics,2400.00,USD,approved,Freight and delivery
+PO-1004,Maple Consulting,3200.00,USD,approved,Implementation services
+PO-1005,Northstar Office Supply,800.00,USD,pending,Replacement equipment

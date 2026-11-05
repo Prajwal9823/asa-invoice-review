@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mosaic AP · Invoice review</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="rail">
+    <a class="brand" href="#desk" aria-label="Mosaic home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span class="brand-name">Mosaic<span>AP</span></span></a>
+    <div class="rail-caption">ACCOUNTS PAYABLE</div>
+    <nav class="rail-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-view="desk"><span class="nav-icon">▤</span><span>Review Desk</span><span class="nav-count" id="navOpen">0</span></button>
+      <button class="nav-item" data-view="queue"><span class="nav-icon">▤</span><span>Exception Queue</span><span class="nav-count" id="navQueue">0</span></button>
+      <button class="nav-item" data-view="history"><span class="nav-icon">▣</span><span>Case History</span></button>
+      <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span><span>Analytics</span></button>
+      <button class="nav-item" data-view="policy"><span class="nav-icon">ⓘ</span><span>How it Works</span></button>
+    </nav>
+    <div class="rail-bottom">
+      <div class="local-lock"><span class="lock-dot"></span><span><b>Private workspace</b><small>Documents stay in your workspace</small></span></div>
+      <div class="profile"><div class="avatar">AP</div><span><b>Accounts payable</b><small>Sample register</small></span><span class="profile-more">···</span></div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar"><div class="crumb"><span>Accounts payable</span><b>/</b><strong id="crumbTitle">Review desk</strong></div><div class="topbar-right"><span class="today" id="today"></span><span class="demo-chip"><i></i> AP SANDBOX</span><button class="icon-button" id="helpButton" aria-label="About Mosaic">?</button></div></header>
+
+    <section class="view active" id="view-desk">
+      <div class="case-topline">
+        <div class="case-topline-left"><span class="back-mark">←</span><span>Case</span><strong id="caseRef">New review</strong><span class="case-state" id="caseState">Waiting for invoice</span></div>
+        <div class="case-topline-right"><span>PRIVATE REVIEW SPACE</span></div>
+      </div>
+      <div class="review-heading">
+        <div class="review-title"><div class="overline">ACCOUNTS PAYABLE · REVIEW DESK</div><h1>Review an invoice</h1><p>Check the source, supplier and PO before the hand-off.</p></div>
+        <div class="review-glance" aria-label="Current invoice summary">
+          <div class="glance-item"><span class="glance-icon">▤</span><span><small>Invoice</small><b id="quickInvoice">Choose an invoice</b></span></div>
+          <div class="glance-item"><span class="glance-icon">$</span><span><small>Amount</small><b id="quickAmount">—</b></span></div>
+          <div class="glance-item"><span class="glance-icon">▣</span><span><small>Invoice date</small><b id="quickDate">—</b></span></div>
+        </div>
+      </div>
+      <div class="case-meta-strip" aria-label="Current case details">
+        <div><small>Case</small><b id="metaCase">New</b></div><div><small>Supplier</small><b id="metaSupplier">Waiting for invoice</b></div><div><small>Invoice</small><b id="metaInvoice">—</b></div><div><small>PO</small><b id="metaPO">—</b></div><div><small>Amount</small><b id="metaAmount">—</b></div>
+      </div>
+      <section class="intake-panel" aria-label="Choose an invoice to review">
+        <div class="intake-caption"><span class="intake-step">NEW REVIEW</span><span>Choose a prepared example or upload a PDF</span></div>
+        <details class="sample-chooser" id="sampleChooser"><summary><span>Prepared invoices</span><small id="sampleCount">Browse examples</small></summary><div class="scenario-list" id="scenarioList" role="listbox" aria-label="Prepared invoice scenarios"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></details>
+        <span class="intake-divider">or</span>
+        <button class="dropzone" id="dropzone" type="button" aria-label="Choose an invoice PDF"><span class="upload-symbol">↑</span><span class="drop-copy"><b id="uploadTitle">Upload a PDF</b><small id="uploadHelp">Text-readable · 15 MB max</small></span><span class="file-pill" id="filePill" hidden></span></button>
+        <input class="file-input" id="invoiceFile" type="file" accept="application/pdf,.pdf" tabindex="-1" aria-hidden="true">
+        <label class="tolerance-control" title="Adjust the maximum small overage that may pass policy."><span>OVERAGE</span><input id="tolerance" type="range" min="0" max="10" step="0.5" value="2"><b id="toleranceValue">2.0%</b></label>
+        <button class="run-button" id="runButton" disabled><span class="run-button-icon">✓</span><span>Review invoice</span><span class="run-arrow">→</span></button>
+        <button id="viewPO" class="text-button">PO register <span>↗</span></button>
+      </section>
+      <section class="case-panel" id="casePanel" aria-label="Invoice, purchase order, and review checks">
+        <div class="evidence-canvas" id="evidenceCanvas"><div class="empty-case"><div class="empty-illustration"><div class="mini-doc"><span>PDF</span><i></i><i></i><i></i><b>?</b></div></div><strong>Your review will appear here</strong><span>Choose an example or upload an invoice to see the source, PO and checks together.</span></div></div>
+      </section>
+      <section class="recent-section"><div class="recent-section-head"><div><div class="overline">RECENT REVIEW ACTIVITY</div><h2>Recent cases</h2></div><button class="link-button" data-goto="history">View case history <span>→</span></button></div><div class="recent-table-head"><span>Case</span><span>Supplier</span><span>Invoice</span><span>Amount</span><span>Status</span><span>Updated</span></div><div class="recent-list" id="recentList"><div class="recent-empty">Reviewed invoices will appear here.</div></div></section>
+    </section>
+
+    <section class="view" id="view-queue">
+      <div class="page-intro queue-intro"><div class="overline">EXCEPTIONS THAT NEED A PERSON</div><h1>Review queue</h1><p>Move each case forward with an owner, a next step, and a complete decision trail.</p></div>
+      <div class="queue-toolbar"><div class="queue-count-card"><span class="queue-pulse"></span><span><b id="queueCount">0</b><small>open cases</small></span></div><select id="queueStatus" aria-label="Filter queue by work state"><option value="OPEN" selected>Open cases</option><option value="">All work states</option><option value="NEW">New</option><option value="IN_REVIEW">In review</option><option value="WAITING">Waiting on someone</option><option value="RESOLVED">Resolved</option></select><select id="queueDecision" aria-label="Filter queue by recommendation"><option value="">All recommendations</option><option value="APPROVE">Ready for hand-off</option><option value="REVIEW">Needs a second look</option><option value="REJECT">Stopped safely</option></select><input id="queueSearch" type="search" aria-label="Search queue" placeholder="Find a supplier or case…" autocomplete="off"><span class="queue-key-hint"><kbd>J</kbd>/<kbd>K</kbd> move · <kbd>N</kbd> note · <kbd>E</kbd> state</span></div>
+      <div class="queue-layout"><section class="queue-table-wrap"><div class="queue-table-head"><span>CASE / SUPPLIER</span><span>RECOMMENDATION</span><span>WORK STATE</span><span>OWNER</span><span>AMOUNT</span></div><div id="queueRows" class="queue-rows"><div class="recent-empty">Loading cases…</div></div></section><aside class="workbench-panel" id="caseWorkbench"><div class="workbench-empty"><span>↗</span><b>Select a case to work through it</b><small>Notes, corrections and activity will stay attached to the review.</small></div></aside></div>
+    </section>
+
+    <section class="view" id="view-analytics">
+      <div class="page-intro"><div class="overline">REVIEW ACTIVITY</div><h1>Analytics</h1><p>A clear view of what has been reviewed and where the work is landing.</p></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Cases reviewed</span><span class="stat-glyph glyph-blue">↗</span></div><div class="stat-number" id="statTotal">—</div><div class="stat-foot">Saved in this workspace</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Ready for hand-off</span><span class="stat-glyph glyph-green">✓</span></div><div class="stat-number" id="statApproved">—</div><div class="stat-foot">A person still approves</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Needs a second look</span><span class="stat-glyph glyph-amber">◷</span></div><div class="stat-number" id="statReview">—</div><div class="stat-foot">One detail needs attention</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Stopped for a reason</span><span class="stat-glyph glyph-red">↗</span></div><div class="stat-number" id="statRejected">—</div><div class="stat-foot">Duplicate or supplier mismatch</div></article>
+        <article class="stat-card feedback-stat"><div class="stat-top"><span>Reviewer feedback</span><span class="stat-glyph glyph-blue">↺</span></div><div class="stat-number" id="statFeedback">—</div><div class="stat-foot"><span id="statOverrides">0</span> disposition overrides with rationale</div></article>
+      </div>
+      <section class="insight-grid" aria-label="Local case analytics">
+        <article class="insight-card activity-insight"><div class="insight-heading"><div><div class="overline">THE PAST SEVEN DAYS</div><h3>Work through the week</h3><p>Cases saved in review history</p></div><span class="chart-note">FROM YOUR CASE HISTORY</span></div><div class="activity-chart" id="activityChart" aria-label="Daily case volume"></div><div class="chart-foot"><span id="activityTotal">0 cases in this window</span><span>By calendar day</span></div></article>
+        <article class="insight-card outcome-insight"><div class="insight-heading"><div><div class="overline">ALL SAVED CASES</div><h3>Where they landed</h3><p>First-pass recommendations</p></div><span class="mix-total" id="mixTotal">0</span></div><div class="mix-content"><div class="donut-chart" id="outcomeDonut"><div><b id="donutTotal">0</b><small>cases</small></div></div><div class="mix-legend"><div><i class="legend-approve"></i><span>Ready for hand-off</span><b id="mixApproved">0</b></div><div><i class="legend-review"></i><span>Needs a second look</span><b id="mixReview">0</b></div><div><i class="legend-reject"></i><span>Stopped for a reason</span><b id="mixRejected">0</b></div></div></div></article>
+      </section>
+    </section>
+
+    <section class="view" id="view-history">
+      <div class="page-intro"><div class="overline">SAVED REVIEWS</div><h1>Case history</h1><p>Find an earlier review, open its checks, or export the record for your notes.</p></div>
+      <div class="archive-toolbar"><div class="search-box"><span>⌕</span><input id="searchRuns" type="search" aria-label="Search historical case records" placeholder="Search supplier, invoice, or case…"></div><select id="filterRuns" aria-label="Filter case history by outcome"><option value="">All outcomes</option><option value="APPROVE">Ready for hand-off</option><option value="REVIEW">Needs a second look</option><option value="REJECT">Stopped for a reason</option></select><button class="outline-button" id="exportRuns">Download CSV ↓</button></div>
+      <div class="archive-table-wrap"><table class="archive-table"><thead><tr><th>CASE</th><th>SUPPLIER</th><th>INVOICE</th><th>AMOUNT</th><th>OUTCOME</th><th>REVIEWED</th><th></th></tr></thead><tbody id="archiveRows"><tr><td colspan="7" class="empty-table">No reviews yet.</td></tr></tbody></table></div>
+      <div class="archive-detail" id="archiveDetail"><div class="detail-empty"><span>↗</span><b>Choose a case to see the details.</b><small>The checks and source text are kept with the review.</small></div></div>
+    </section>
+
+    <section class="view" id="view-policy">
+      <div class="page-intro"><div class="overline">THE CHECKS BEHIND EACH REVIEW</div><h1>How it works</h1><p>A rules-based first pass. No payment is made, and fuzzy matches always wait for a person.</p></div>
+      <div class="map-layout"><div class="map-flow">
+        <article class="map-node"><span class="map-node-num">01</span><div><b>Read the document</b><p>Extract the invoice ID, date, supplier, PO reference, currency, and amount from selectable PDF text.</p></div><span class="map-node-state">INPUT</span></article>
+        <div class="map-connector"></div><article class="map-node"><span class="map-node-num">02</span><div><b>Check identity & history</b><p>Fingerprint duplicate submissions. Normalize supplier names. Similar names suggest a human check; they do not silently pass.</p></div><span class="map-node-state">IDENTITY</span></article>
+        <div class="map-connector"></div><article class="map-node"><span class="map-node-num">03</span><div><b>Reconcile the commitment</b><p>Match the PO, approved status, currency, amount tolerance, subtotal/tax arithmetic, and previously approved billing.</p></div><span class="map-node-state">CONTROL</span></article>
+        <div class="map-connector"></div><div class="outcome-branches"><article class="branch branch-good"><span>✓</span><b>Ready for hand-off</b><small>Clean match; a person still approves.</small></article><article class="branch branch-wait"><span>◷</span><b>Needs a second look</b><small>Incomplete, unclear, or outside the agreed tolerance.</small></article><article class="branch branch-stop"><span>↗</span><b>Stopped for a reason</b><small>Duplicate submission or supplier mismatch.</small></article></div>
+      </div><aside class="policy-aside"><div class="policy-aside-icon">✳</div><div class="overline">A FEW CLEAR LIMITS</div><h3>This first pass will not</h3><ul><li>Send or initiate a payment</li><li>Auto-match a fuzzy supplier name</li><li>Read text from a scanned image</li><li>Approve spending above the PO</li><li>Hide the reason for a decision</li></ul><div class="policy-note">Field coverage counts what was extracted. It does not override a failed check.</div></aside></div>
+      <div class="demo-cases"><div class="overline">REHEARSE THE EDGE CASES</div><div class="demo-case-grid" id="policyCases"></div></div>
+    </section>
+
+    <footer class="app-footer"><span>◈ MOSAIC AP</span><span>Review controls · synthetic sample records · <a href="/api/health" target="_blank" rel="noreferrer">service status</a></span><span>Evidence first. People decide.</span></footer>
+  </main>
+</div>
+<div class="command-backdrop" id="commandBackdrop" hidden><div class="command-palette" role="dialog" aria-modal="true" aria-label="Mosaic command menu"><div class="command-search-row"><span>⌕</span><input id="commandSearch" type="search" placeholder="Where would you like to go?" autocomplete="off"><kbd>ESC</kbd></div><div class="command-results" id="commandResults"></div><div class="command-footer"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>ENTER</kbd> choose</span><span>Ctrl K · command menu</span></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose">×</button><div class="overline">PURCHASING REGISTER</div><h2 id="modalTitle">Commitments in this demo</h2><p><strong id="poCount">0</strong> purchase orders loaded. These fictional purchase orders are the reference point for invoice review.</p><div class="po-modal-table" id="poModalTable"></div><div class="modal-foot">To change demo records, edit <code>data/purchase_orders/purchase_orders.csv</code>.</div></div></div>
+<script src="/app.js" defer></script>
+</body></html>
+
+
