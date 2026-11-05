@@ -1,0 +1,128 @@
+[
+  {
+    "grn_number": "GRN-9001",
+    "po_number": "PO-1001",
+    "vendor": "Northstar Office Supply",
+    "received_date": "2026-10-27",
+    "received_by": "Alex Mercer (Dock Receiving)",
+    "packing_slip": "PS-77412",
+    "status": "COMPLETED",
+    "condition": "PASSED_QA",
+    "notes": "All 10 ergonomic chairs and 4 desk converters received in pristine condition. Barcode assets tagged.",
+    "lines": [
+      {
+        "line_number": 1,
+        "sku": "FUR-CH-01",
+        "description": "Ergonomic Office Chair - Model X",
+        "ordered_qty": 10,
+        "received_qty": 10,
+        "accepted_qty": 10,
+        "rejected_qty": 0,
+        "unit_of_measure": "EA"
+      },
+      {
+        "line_number": 2,
+        "sku": "FUR-DK-04",
+        "description": "Standing Desk Converter - 36 inch",
+        "ordered_qty": 4,
+        "received_qty": 4,
+        "accepted_qty": 4,
+        "rejected_qty": 0,
+        "unit_of_measure": "EA"
+      }
+    ]
+  },
+  {
+    "grn_number": "GRN-9002",
+    "po_number": "PO-1002",
+    "vendor": "Acme Cloud Services",
+    "received_date": "2026-10-28",
+    "received_by": "Sara Lin (DevOps)",
+    "packing_slip": "DIGITAL-PROV-991",
+    "status": "COMPLETED",
+    "condition": "PASSED_QA",
+    "notes": "Dedicated enterprise cluster provisioned and verified against SLA benchmark.",
+    "lines": [
+      {
+        "line_number": 1,
+        "sku": "SRV-CLD-ENT",
+        "description": "Dedicated Enterprise Cloud Cluster Hosting",
+        "ordered_qty": 1,
+        "received_qty": 1,
+        "accepted_qty": 1,
+        "rejected_qty": 0,
+        "unit_of_measure": "YEAR"
+      }
+    ]
+  },
+  {
+    "grn_number": "GRN-9003",
+    "po_number": "PO-1003",
+    "vendor": "Bluebird Logistics",
+    "received_date": "2026-10-29",
+    "received_by": "Marcus Vance (Logistics Yard)",
+    "packing_slip": "BL-BOL-4410",
+    "status": "PARTIAL",
+    "condition": "PASSED_QA",
+    "notes": "1 of 2 containers received. Container #2 held at rail freight interchange.",
+    "lines": [
+      {
+        "line_number": 1,
+        "sku": "LOG-FRT-STD",
+        "description": "Interstate Freight - 40ft Container Transport",
+        "ordered_qty": 2,
+        "received_qty": 1,
+        "accepted_qty": 1,
+        "rejected_qty": 0,
+        "unit_of_measure": "SHIPMENT"
+      }
+    ]
+  },
+  {
+    "grn_number": "GRN-9004",
+    "po_number": "PO-1004",
+    "vendor": "Maple Consulting",
+    "received_date": "2026-10-31",
+    "received_by": "Elena Rostova (PMO Lead)",
+    "packing_slip": "TS-OCT-W4",
+    "status": "COMPLETED",
+    "condition": "PASSED_QA",
+    "notes": "All 40 architectural milestone consulting hours delivered and sign-off recorded.",
+    "lines": [
+      {
+        "line_number": 1,
+        "sku": "CON-ENG-SRV",
+        "description": "Senior Systems Architecture Consulting (40 hrs)",
+        "ordered_qty": 40,
+        "received_qty": 40,
+        "accepted_qty": 40,
+        "rejected_qty": 0,
+        "unit_of_measure": "HRS"
+      }
+    ]
+  },
+  {
+    "grn_number": "GRN-9005",
+    "po_number": "PO-1006",
+    "vendor": "Apex Industrial Supplies",
+    "received_date": "2026-11-01",
+    "received_by": "Jacob Thorne (Inbound Quality)",
+    "packing_slip": "PS-APEX-8821",
+    "status": "PARTIAL",
+    "condition": "SHORTAGE_LOGGED",
+    "notes": "Shipment shortage: only 3 electric motors delivered on pallet. 2 motors backordered by vendor.",
+    "lines": [
+      {
+        "line_number": 1,
+        "sku": "IND-MOT-09",
+        "description": "Variable Speed Electric Motor 5HP",
+        "ordered_qty": 5,
+        "received_qty": 3,
+        "accepted_qty": 3,
+        "rejected_qty": 0,
+        "unit_of_measure": "EA"
+      }
+    ]
+  }
+]
+

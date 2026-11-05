@@ -1,0 +1,78 @@
+{
+  "PO-1001": [
+    {
+      "line_number": 1,
+      "sku": "FUR-CH-01",
+      "description": "Ergonomic Office Chair - Model X",
+      "ordered_qty": 10,
+      "unit_price": 75.00,
+      "total": 750.00,
+      "tax_rate": 0.08
+    },
+    {
+      "line_number": 2,
+      "sku": "FUR-DK-04",
+      "description": "Standing Desk Converter - 36 inch",
+      "ordered_qty": 4,
+      "unit_price": 100.00,
+      "total": 400.00,
+      "tax_rate": 0.08
+    }
+  ],
+  "PO-1002": [
+    {
+      "line_number": 1,
+      "sku": "SRV-CLD-ENT",
+      "description": "Dedicated Enterprise Cloud Cluster Hosting",
+      "ordered_qty": 1,
+      "unit_price": 5000.00,
+      "total": 5000.00,
+      "tax_rate": 0.0
+    }
+  ],
+  "PO-1003": [
+    {
+      "line_number": 1,
+      "sku": "LOG-FRT-STD",
+      "description": "Interstate Freight - 40ft Container Transport",
+      "ordered_qty": 2,
+      "unit_price": 1200.00,
+      "total": 2400.00,
+      "tax_rate": 0.0
+    }
+  ],
+  "PO-1004": [
+    {
+      "line_number": 1,
+      "sku": "CON-ENG-SRV",
+      "description": "Senior Systems Architecture Consulting (40 hrs)",
+      "ordered_qty": 40,
+      "unit_price": 80.00,
+      "total": 3200.00,
+      "tax_rate": 0.0
+    }
+  ],
+  "PO-1005": [
+    {
+      "line_number": 1,
+      "sku": "IT-MON-4K",
+      "description": "Ultra-HD 32 inch IPS Developer Monitor",
+      "ordered_qty": 2,
+      "unit_price": 400.00,
+      "total": 800.00,
+      "tax_rate": 0.0
+    }
+  ],
+  "PO-1006": [
+    {
+      "line_number": 1,
+      "sku": "IND-MOT-09",
+      "description": "Variable Speed Electric Motor 5HP",
+      "ordered_qty": 5,
+      "unit_price": 300.00,
+      "total": 1500.00,
+      "tax_rate": 0.0
+    }
+  ]
+}
+

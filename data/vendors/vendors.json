@@ -1,0 +1,195 @@
+[
+  {
+    "vendor_id": "VND-101",
+    "name": "Northstar Office Supply",
+    "aliases": ["Northstar Office Supplies", "Northstar Office", "Northstar"],
+    "tax_id": "XX-XXXX8812",
+    "payment_terms": "Net 30",
+    "category": "Office Equipment & Furniture",
+    "address": "100 Commercial Blvd, Suite 400, Chicago, IL 60601",
+    "contact_email": "ar@northstarofficesupply.com",
+    "contact_phone": "+1 (312) 555-0192",
+    "bank_details": {
+      "bank_name": "JPMorgan Chase Bank, N.A.",
+      "account_number_last4": "4912",
+      "routing_number": "071000013",
+      "currency": "USD",
+      "remit_email": "remittance@northstarofficesupply.com",
+      "verified": true,
+      "last_verified_date": "2026-09-15"
+    },
+    "verification_status": "VERIFIED",
+    "risk_rating": "LOW",
+    "risk_score": 12,
+    "metrics": {
+      "total_invoiced_amount": 48250.00,
+      "invoice_count": 38,
+      "average_invoice_amount": 1269.74,
+      "exception_rate_pct": 5.2,
+      "duplicate_count": 0,
+      "avg_processing_days": 1.8
+    },
+    "notes": "Primary preferred office supplier. Consistent pricing and reliable delivery."
+  },
+  {
+    "vendor_id": "VND-102",
+    "name": "Acme Cloud Services",
+    "aliases": ["Acme Cloud", "Acme Services LLC"],
+    "tax_id": "XX-XXXX3490",
+    "payment_terms": "Net 15",
+    "category": "Cloud Infrastructure & SaaS",
+    "address": "500 Technology Way, Floor 12, Seattle, WA 98101",
+    "contact_email": "billing@acmecloud.io",
+    "contact_phone": "+1 (206) 555-0144",
+    "bank_details": {
+      "bank_name": "Silicon Valley Bank / First Citizens",
+      "account_number_last4": "8831",
+      "routing_number": "121140399",
+      "currency": "USD",
+      "remit_email": "ap-wire@acmecloud.io",
+      "verified": true,
+      "last_verified_date": "2026-08-01"
+    },
+    "verification_status": "VERIFIED",
+    "risk_rating": "LOW",
+    "risk_score": 8,
+    "metrics": {
+      "total_invoiced_amount": 124000.00,
+      "invoice_count": 24,
+      "average_invoice_amount": 5166.67,
+      "exception_rate_pct": 4.1,
+      "duplicate_count": 0,
+      "avg_processing_days": 1.2
+    },
+    "notes": "Mission-critical hosting provider. Monthly cloud commit with annual true-up."
+  },
+  {
+    "vendor_id": "VND-103",
+    "name": "Bluebird Logistics",
+    "aliases": ["Bluebird Freight", "Bluebird Transport"],
+    "tax_id": "XX-XXXX5518",
+    "payment_terms": "Net 30",
+    "category": "Freight & Logistics",
+    "address": "742 Interstate Pkwy, Dallas, TX 75201",
+    "contact_email": "dispatch@bluebirdlogistics.com",
+    "contact_phone": "+1 (214) 555-0188",
+    "bank_details": {
+      "bank_name": "Bank of America, N.A.",
+      "account_number_last4": "2290",
+      "routing_number": "111000012",
+      "currency": "USD",
+      "remit_email": "payments@bluebirdlogistics.com",
+      "verified": true,
+      "last_verified_date": "2026-07-20"
+    },
+    "verification_status": "VERIFIED",
+    "risk_rating": "MODERATE",
+    "risk_score": 34,
+    "metrics": {
+      "total_invoiced_amount": 62400.00,
+      "invoice_count": 19,
+      "average_invoice_amount": 3284.21,
+      "exception_rate_pct": 21.0,
+      "duplicate_count": 0,
+      "avg_processing_days": 3.4
+    },
+    "notes": "Regular carrier for domestic line-hauls. Prone to split shipments when capacity constraints occur."
+  },
+  {
+    "vendor_id": "VND-104",
+    "name": "Maple Consulting",
+    "aliases": ["Maple Systems Consulting", "Maple Partners"],
+    "tax_id": "XX-XXXX9921",
+    "payment_terms": "Net 30",
+    "category": "IT & Professional Services",
+    "address": "350 Bay Street, Suite 900, Toronto, ON M5H 2S6",
+    "contact_email": "invoices@mapleconsulting.ca",
+    "contact_phone": "+1 (416) 555-0177",
+    "bank_details": {
+      "bank_name": "Royal Bank of Canada (New York Branch)",
+      "account_number_last4": "7104",
+      "routing_number": "026004037",
+      "currency": "USD",
+      "remit_email": "accounting@mapleconsulting.ca",
+      "verified": true,
+      "last_verified_date": "2026-10-01"
+    },
+    "verification_status": "VERIFIED",
+    "risk_rating": "LOW",
+    "risk_score": 18,
+    "metrics": {
+      "total_invoiced_amount": 89600.00,
+      "invoice_count": 14,
+      "average_invoice_amount": 6400.00,
+      "exception_rate_pct": 14.2,
+      "duplicate_count": 0,
+      "avg_processing_days": 2.1
+    },
+    "notes": "Approved consulting firm for core ERP and cloud integration architecture."
+  },
+  {
+    "vendor_id": "VND-105",
+    "name": "Apex Industrial Supplies",
+    "aliases": ["Apex Industrial", "Apex Supply Corp"],
+    "tax_id": "XX-XXXX6623",
+    "payment_terms": "Net 45",
+    "category": "Industrial Equipment & Maintenance",
+    "address": "1200 Manufacturing Way, Cleveland, OH 44101",
+    "contact_email": "sales@apexindustrial.com",
+    "contact_phone": "+1 (216) 555-0133",
+    "bank_details": {
+      "bank_name": "PNC Bank",
+      "account_number_last4": "5510",
+      "routing_number": "041200055",
+      "currency": "USD",
+      "remit_email": "ap@apexindustrial.com",
+      "verified": true,
+      "last_verified_date": "2026-09-22"
+    },
+    "verification_status": "VERIFIED",
+    "risk_rating": "LOW",
+    "risk_score": 15,
+    "metrics": {
+      "total_invoiced_amount": 34500.00,
+      "invoice_count": 11,
+      "average_invoice_amount": 3136.36,
+      "exception_rate_pct": 9.1,
+      "duplicate_count": 0,
+      "avg_processing_days": 2.0
+    },
+    "notes": "Industrial parts distributor. Occasional supplier backorders recorded."
+  },
+  {
+    "vendor_id": "VND-999",
+    "name": "Other Freight LLC",
+    "aliases": ["Other Freight", "OF Logistics"],
+    "tax_id": "XX-XXXX1102",
+    "payment_terms": "Due Upon Receipt",
+    "category": "Unclassified Logistics",
+    "address": "99 Unknown Route, Atlanta, GA 30301",
+    "contact_email": "claims@otherfreight-billing.com",
+    "contact_phone": "+1 (404) 555-0199",
+    "bank_details": {
+      "bank_name": "Unverified Regional Credit Union",
+      "account_number_last4": "9901",
+      "routing_number": "261070015",
+      "currency": "USD",
+      "remit_email": "claims@otherfreight-billing.com",
+      "verified": false,
+      "last_verified_date": null
+    },
+    "verification_status": "UNVERIFIED",
+    "risk_rating": "CRITICAL",
+    "risk_score": 95,
+    "metrics": {
+      "total_invoiced_amount": 0.00,
+      "invoice_count": 1,
+      "average_invoice_amount": 0.00,
+      "exception_rate_pct": 100.0,
+      "duplicate_count": 0,
+      "avg_processing_days": 0.0
+    },
+    "notes": "FLAGGED: Unrecognized supplier submitted invoice referencing Bluebird Logistics PO-1003. Bank account unverified."
+  }
+]
+

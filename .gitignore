@@ -2,3 +2,5 @@
 __pycache__/
 *.py[cod]
 runs/*.sqlite3
+runs/sessions/
+runs/

@@ -1,109 +1,776 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mosaic AP · Invoice review</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mosaic AP Enterprise · Intelligent Accounts Payable Platform</title>
   <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="app-shell">
-  <aside class="rail">
-    <a class="brand" href="#desk" aria-label="Mosaic home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span class="brand-name">Mosaic<span>AP</span></span></a>
-    <div class="rail-caption">ACCOUNTS PAYABLE</div>
+  <!-- Left Navigation Rail -->
+  <aside class="rail" aria-label="Main sidebar">
+    <div class="rail-header">
+      <a class="brand" href="#desk" aria-label="Mosaic AP Home">
+        <span class="brand-mark">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">Mosaic<span>AP</span></span>
+          <span class="brand-tier">ENTERPRISE</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="rail-caption">ACCOUNTS PAYABLE SUITE</div>
     <nav class="rail-nav" aria-label="Main navigation">
-      <button class="nav-item active" data-view="desk"><span class="nav-icon">▤</span><span>Review Desk</span><span class="nav-count" id="navOpen">0</span></button>
-      <button class="nav-item" data-view="queue"><span class="nav-icon">▤</span><span>Exception Queue</span><span class="nav-count" id="navQueue">0</span></button>
-      <button class="nav-item" data-view="history"><span class="nav-icon">▣</span><span>Case History</span></button>
-      <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span><span>Analytics</span></button>
-      <button class="nav-item" data-view="policy"><span class="nav-icon">ⓘ</span><span>How it Works</span></button>
+      <button class="nav-item active" data-view="desk">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </span>
+        <span>Review Desk</span>
+        <span class="nav-count" id="navOpen" hidden>0</span>
+      </button>
+
+      <button class="nav-item" data-view="queue">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </span>
+        <span>Exception Queue</span>
+        <span class="nav-count nav-count-amber" id="navQueue" hidden>0</span>
+      </button>
+
+      <button class="nav-item" data-view="workbench">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        </span>
+        <span>Review Workbench</span>
+        <span class="nav-badge" id="navActiveCase">—</span>
+      </button>
+
+      <button class="nav-item" data-view="vendors">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </span>
+        <span>Vendor Intelligence</span>
+      </button>
+
+      <button class="nav-item" data-view="history">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </span>
+        <span>Case History</span>
+      </button>
+
+      <button class="nav-item" data-view="analytics">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </span>
+        <span>Analytics</span>
+      </button>
+
+      <button class="nav-item" data-view="policy">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </span>
+        <span>How it Works</span>
+      </button>
     </nav>
+
     <div class="rail-bottom">
-      <div class="local-lock"><span class="lock-dot"></span><span><b>Private workspace</b><small>Documents stay in your workspace</small></span></div>
-      <div class="profile"><div class="avatar">AP</div><span><b>Accounts payable</b><small>Sample register</small></span><span class="profile-more">···</span></div>
+      <div class="system-health">
+        <span class="health-pulse"></span>
+        <div class="health-copy">
+          <b>AI Engine Active</b>
+          <small>3-Way Match & OCR Ready</small>
+        </div>
+      </div>
+
+      <div class="profile-card" id="profileTrigger" tabindex="0" role="button" aria-label="Reviewer profile details">
+        <div class="avatar">AP</div>
+        <div class="profile-meta">
+          <b>AP Controller</b>
+          <small>Enterprise Sandbox</small>
+        </div>
+        <span class="profile-status-dot" title="Authenticated session"></span>
+      </div>
     </div>
   </aside>
 
+  <!-- Main Application Area -->
   <main class="main-area">
-    <header class="topbar"><div class="crumb"><span>Accounts payable</span><b>/</b><strong id="crumbTitle">Review desk</strong></div><div class="topbar-right"><span class="today" id="today"></span><span class="demo-chip"><i></i> AP SANDBOX</span><button class="icon-button" id="helpButton" aria-label="About Mosaic">?</button></div></header>
-
-    <section class="view active" id="view-desk">
-      <div class="case-topline">
-        <div class="case-topline-left"><span class="back-mark">←</span><span>Case</span><strong id="caseRef">New review</strong><span class="case-state" id="caseState">Waiting for invoice</span></div>
-        <div class="case-topline-right"><span>PRIVATE REVIEW SPACE</span></div>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <nav class="crumb" aria-label="Breadcrumb">
+          <span>Accounts Payable</span>
+          <span class="crumb-separator">/</span>
+          <strong id="crumbTitle">Review Desk</strong>
+        </nav>
       </div>
-      <div class="review-heading">
-        <div class="review-title"><div class="overline">ACCOUNTS PAYABLE · REVIEW DESK</div><h1>Review an invoice</h1><p>Check the source, supplier and PO before the hand-off.</p></div>
-        <div class="review-glance" aria-label="Current invoice summary">
-          <div class="glance-item"><span class="glance-icon">▤</span><span><small>Invoice</small><b id="quickInvoice">Choose an invoice</b></span></div>
-          <div class="glance-item"><span class="glance-icon">$</span><span><small>Amount</small><b id="quickAmount">—</b></span></div>
-          <div class="glance-item"><span class="glance-icon">▣</span><span><small>Invoice date</small><b id="quickDate">—</b></span></div>
+
+      <div class="topbar-center">
+        <button class="global-search-btn" id="globalSearchBtn" aria-label="Search invoices, POs, vendors (Ctrl+K)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search invoices, POs, vendors…</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+      </div>
+
+      <div class="topbar-right">
+        <button class="notification-trigger" id="notificationTrigger" aria-label="Notifications center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notification-badge" id="notificationCount" hidden>0</span>
+        </button>
+
+        <button class="outline-action-btn" id="viewPO">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          <span>PO Register</span>
+        </button>
+
+        <button class="outline-action-btn" id="btnResetDemo" title="Clear workspace to clean slate (0 cases)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+          <span>Clear Slate</span>
+        </button>
+
+        <button class="outline-action-btn" id="btnSeedDemo" title="Load sample dataset (3 active exceptions + 3 history cases)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Load Demo Data</span>
+        </button>
+
+        <span class="today-tag" id="today"></span>
+        <button class="icon-button" id="helpButton" aria-label="Command palette and shortcuts">?</button>
+      </div>
+    </header>
+
+    <!-- Notification Drawer / Popover -->
+    <div class="notification-popover" id="notificationPopover" hidden>
+      <div class="notification-header">
+        <b>Alerts & Exceptions</b>
+        <span class="notification-sub" id="notificationSubtitle">0 pending alerts</span>
+      </div>
+      <div class="notification-list" id="notificationList">
+        <div class="notification-empty">No critical alerts pending review.</div>
+      </div>
+    </div>
+
+    <!-- VIEW 1: REVIEW DESK -->
+    <section class="view active" id="view-desk">
+      <div class="desk-hero">
+        <div class="desk-hero-copy">
+          <div class="overline">INTELLIGENT INVOICE INTAKE & REVIEW DESK</div>
+          <h1>Process & Reconcile Invoices</h1>
+          <p>Extract line items, verify supplier identity, run automated 3-way matching, and screen for fraud.</p>
+        </div>
+
+        <div class="desk-stats-strip">
+          <div class="strip-item">
+            <span class="strip-label">Selected Document</span>
+            <b id="quickInvoice">Choose an invoice</b>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-item">
+            <span class="strip-label">Invoice Amount</span>
+            <b id="quickAmount">—</b>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-item">
+            <span class="strip-label">Invoice Date</span>
+            <b id="quickDate">—</b>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-item">
+            <span class="strip-label">Matched PO</span>
+            <b id="quickPO">—</b>
+          </div>
         </div>
       </div>
-      <div class="case-meta-strip" aria-label="Current case details">
-        <div><small>Case</small><b id="metaCase">New</b></div><div><small>Supplier</small><b id="metaSupplier">Waiting for invoice</b></div><div><small>Invoice</small><b id="metaInvoice">—</b></div><div><small>PO</small><b id="metaPO">—</b></div><div><small>Amount</small><b id="metaAmount">—</b></div>
-      </div>
-      <section class="intake-panel" aria-label="Choose an invoice to review">
-        <div class="intake-caption"><span class="intake-step">NEW REVIEW</span><span>Choose a prepared example or upload a PDF</span></div>
-        <details class="sample-chooser" id="sampleChooser"><summary><span>Prepared invoices</span><small id="sampleCount">Browse examples</small></summary><div class="scenario-list" id="scenarioList" role="listbox" aria-label="Prepared invoice scenarios"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></details>
-        <span class="intake-divider">or</span>
-        <button class="dropzone" id="dropzone" type="button" aria-label="Choose an invoice PDF"><span class="upload-symbol">↑</span><span class="drop-copy"><b id="uploadTitle">Upload a PDF</b><small id="uploadHelp">Text-readable · 15 MB max</small></span><span class="file-pill" id="filePill" hidden></span></button>
-        <input class="file-input" id="invoiceFile" type="file" accept="application/pdf,.pdf" tabindex="-1" aria-hidden="true">
-        <label class="tolerance-control" title="Adjust the maximum small overage that may pass policy."><span>OVERAGE</span><input id="tolerance" type="range" min="0" max="10" step="0.5" value="2"><b id="toleranceValue">2.0%</b></label>
-        <button class="run-button" id="runButton" disabled><span class="run-button-icon">✓</span><span>Review invoice</span><span class="run-arrow">→</span></button>
-        <button id="viewPO" class="text-button">PO register <span>↗</span></button>
+
+      <!-- Intake Workspace Panel -->
+      <section class="intake-card" aria-label="Invoice intake panel">
+        <div class="intake-tabs">
+          <button class="intake-tab active" id="tabScenarios">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Prepared Enterprise Scenarios
+          </button>
+          <button class="intake-tab" id="tabUpload">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Upload Custom PDF
+          </button>
+        </div>
+
+        <div class="intake-body">
+          <!-- Scenario Chooser Section -->
+          <div class="scenario-panel" id="scenarioPanel">
+            <div class="scenario-panel-head">
+              <span class="panel-sub">Select an enterprise test scenario:</span>
+              <span class="panel-count" id="sampleCount">Browse scenarios</span>
+            </div>
+            <div class="scenario-grid" id="scenarioList" role="listbox" aria-label="Prepared invoice scenarios">
+              <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+            </div>
+          </div>
+
+          <!-- Drag & Drop Upload Section -->
+          <div class="upload-panel" id="uploadPanel" hidden>
+            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Click or drag PDF invoice here">
+              <div class="dropzone-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              </div>
+              <div class="dropzone-text">
+                <b id="uploadTitle">Drag & Drop Invoice PDF Here</b>
+                <small id="uploadHelp">Supports text-readable digital PDFs up to 15 MB</small>
+              </div>
+              <div class="file-pill" id="filePill" hidden></div>
+            </div>
+            <input class="file-input" id="invoiceFile" type="file" accept="application/pdf,.pdf" tabindex="-1" aria-hidden="true">
+          </div>
+
+          <!-- Intake Action Bar -->
+          <div class="intake-actions-bar">
+            <div class="tolerance-wrapper">
+              <label for="tolerance" class="tolerance-label">
+                <span>VARIANCE TOLERANCE</span>
+                <b id="toleranceValue">2.0%</b>
+              </label>
+              <input id="tolerance" type="range" min="0" max="10" step="0.5" value="2" aria-label="Overage tolerance percentage">
+              <small class="tolerance-hint">Small price/amount overage allowance</small>
+            </div>
+
+            <div class="intake-buttons">
+              <button class="btn btn-primary run-button" id="runButton" disabled>
+                <span class="btn-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Review Invoice</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="case-panel" id="casePanel" aria-label="Invoice, purchase order, and review checks">
-        <div class="evidence-canvas" id="evidenceCanvas"><div class="empty-case"><div class="empty-illustration"><div class="mini-doc"><span>PDF</span><i></i><i></i><i></i><b>?</b></div></div><strong>Your review will appear here</strong><span>Choose an example or upload an invoice to see the source, PO and checks together.</span></div></div>
+
+      <!-- Live Review Output Panel -->
+      <section class="case-panel" id="casePanel" aria-label="Invoice inspection canvas">
+        <div class="case-topline" id="caseTopline" hidden>
+          <div class="case-topline-left">
+            <span class="case-badge-pill" id="caseRef">New Review</span>
+            <span class="case-state" id="caseState">Waiting for input</span>
+            <span class="approval-tier-chip" id="caseTier">Tier 1</span>
+          </div>
+          <div class="case-topline-right">
+            <button class="btn btn-secondary btn-sm" id="jumpToWorkbench">Open in Review Workbench ↗</button>
+          </div>
+        </div>
+
+        <div class="evidence-canvas" id="evidenceCanvas">
+          <div class="empty-case">
+            <div class="empty-illustration">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <strong>Select an invoice scenario or upload a PDF</strong>
+            <span>Mosaic will extract line items, run 3-way matching against POs & Goods Receipts (GRNs), compute explainable risk, and prepare audit records.</span>
+          </div>
+        </div>
       </section>
-      <section class="recent-section"><div class="recent-section-head"><div><div class="overline">RECENT REVIEW ACTIVITY</div><h2>Recent cases</h2></div><button class="link-button" data-goto="history">View case history <span>→</span></button></div><div class="recent-table-head"><span>Case</span><span>Supplier</span><span>Invoice</span><span>Amount</span><span>Status</span><span>Updated</span></div><div class="recent-list" id="recentList"><div class="recent-empty">Reviewed invoices will appear here.</div></div></section>
+
+      <!-- Recent Reviews Section -->
+      <section class="recent-section">
+        <div class="recent-section-head">
+          <div>
+            <div class="overline">AUDIT ACTIVITY LOG</div>
+            <h2>Recent Reviewed Invoices</h2>
+          </div>
+          <button class="link-button" data-goto="history">View complete archive <span>→</span></button>
+        </div>
+        <div class="table-container">
+          <div class="recent-table-head">
+            <span>Case</span>
+            <span>Supplier</span>
+            <span>Invoice Reference</span>
+            <span>Amount</span>
+            <span>Risk Score</span>
+            <span>Recommendation</span>
+            <span>Status</span>
+          </div>
+          <div class="recent-list" id="recentList">
+            <div class="recent-empty">Reviewed invoices will appear here.</div>
+          </div>
+        </div>
+      </section>
     </section>
 
+    <!-- VIEW 2: EXCEPTION QUEUE -->
     <section class="view" id="view-queue">
-      <div class="page-intro queue-intro"><div class="overline">EXCEPTIONS THAT NEED A PERSON</div><h1>Review queue</h1><p>Move each case forward with an owner, a next step, and a complete decision trail.</p></div>
-      <div class="queue-toolbar"><div class="queue-count-card"><span class="queue-pulse"></span><span><b id="queueCount">0</b><small>open cases</small></span></div><select id="queueStatus" aria-label="Filter queue by work state"><option value="OPEN" selected>Open cases</option><option value="">All work states</option><option value="NEW">New</option><option value="IN_REVIEW">In review</option><option value="WAITING">Waiting on someone</option><option value="RESOLVED">Resolved</option></select><select id="queueDecision" aria-label="Filter queue by recommendation"><option value="">All recommendations</option><option value="APPROVE">Ready for hand-off</option><option value="REVIEW">Needs a second look</option><option value="REJECT">Stopped safely</option></select><input id="queueSearch" type="search" aria-label="Search queue" placeholder="Find a supplier or case…" autocomplete="off"><span class="queue-key-hint"><kbd>J</kbd>/<kbd>K</kbd> move · <kbd>N</kbd> note · <kbd>E</kbd> state</span></div>
-      <div class="queue-layout"><section class="queue-table-wrap"><div class="queue-table-head"><span>CASE / SUPPLIER</span><span>RECOMMENDATION</span><span>WORK STATE</span><span>OWNER</span><span>AMOUNT</span></div><div id="queueRows" class="queue-rows"><div class="recent-empty">Loading cases…</div></div></section><aside class="workbench-panel" id="caseWorkbench"><div class="workbench-empty"><span>↗</span><b>Select a case to work through it</b><small>Notes, corrections and activity will stay attached to the review.</small></div></aside></div>
+      <div class="page-intro">
+        <div class="overline">ACCOUNTS PAYABLE TRIAGE</div>
+        <h1>Exception Resolution Queue</h1>
+        <p>Prioritize exceptions, resolve three-way matching discrepancies, assign reviewers, and record audited decisions.</p>
+      </div>
+
+      <!-- Queue Stat Cards -->
+      <div class="queue-kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Open Exceptions</div>
+          <div class="kpi-value" id="qStatOpen">0</div>
+          <div class="kpi-sub">Requiring human review</div>
+        </div>
+        <div class="kpi-card kpi-card-critical">
+          <div class="kpi-label">Critical Risk Cases</div>
+          <div class="kpi-value" id="qStatCritical">0</div>
+          <div class="kpi-sub">Duplicates & vendor mismatches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Value at Risk</div>
+          <div class="kpi-value" id="qStatValue">$0.00</div>
+          <div class="kpi-sub">Total dollars in exception</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Average Resolution SLA</div>
+          <div class="kpi-value">1.4 hrs</div>
+          <div class="kpi-sub">Target: &lt; 4 hours</div>
+        </div>
+      </div>
+
+      <!-- Queue Toolbar -->
+      <div class="queue-toolbar">
+        <div class="search-input-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="queueSearch" type="search" placeholder="Search case, supplier, invoice #, owner…" autocomplete="off">
+        </div>
+
+        <select id="queueStatus" aria-label="Filter queue by workflow status">
+          <option value="OPEN" selected>Open Cases</option>
+          <option value="">All Workflow States</option>
+          <option value="NEW">New</option>
+          <option value="IN_REVIEW">In Review</option>
+          <option value="WAITING">Waiting on Procurement</option>
+          <option value="ESCALATED">Escalated</option>
+          <option value="RESOLVED">Resolved</option>
+        </select>
+
+        <select id="queueDecision" aria-label="Filter queue by model recommendation">
+          <option value="">All Recommendations</option>
+          <option value="APPROVE">Ready for Hand-Off</option>
+          <option value="REVIEW">Needs AP Review</option>
+          <option value="REJECT">Stopped / Flagged</option>
+        </select>
+
+        <select id="queuePriority" aria-label="Filter queue by priority">
+          <option value="">All Priorities</option>
+          <option value="CRITICAL">Critical Priority</option>
+          <option value="HIGH">High Priority</option>
+          <option value="MEDIUM">Medium Priority</option>
+          <option value="LOW">Low Priority</option>
+        </select>
+
+        <span class="queue-key-hint"><kbd>J</kbd>/<kbd>K</kbd> navigate · <kbd>Enter</kbd> open workbench</span>
+      </div>
+
+      <!-- Queue Table & Preview Split -->
+      <div class="queue-layout">
+        <section class="queue-table-wrap">
+          <div class="queue-table-head">
+            <span>Case / Supplier</span>
+            <span>Priority</span>
+            <span>Risk Score</span>
+            <span>Recommendation</span>
+            <span>Status</span>
+            <span>Owner</span>
+            <span>Amount</span>
+          </div>
+          <div id="queueRows" class="queue-rows">
+            <div class="recent-empty">Loading exception queue…</div>
+          </div>
+        </section>
+
+        <!-- Quick Triage Side Panel -->
+        <aside class="quick-triage-panel" id="quickTriagePanel">
+          <div class="workbench-empty">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <b>Select a case to inspect</b>
+            <small>View 3-way match, risk breakdown, and quick triage actions.</small>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section class="view" id="view-analytics">
-      <div class="page-intro"><div class="overline">REVIEW ACTIVITY</div><h1>Analytics</h1><p>A clear view of what has been reviewed and where the work is landing.</p></div>
-      <div class="stats-grid">
-        <article class="stat-card"><div class="stat-top"><span>Cases reviewed</span><span class="stat-glyph glyph-blue">↗</span></div><div class="stat-number" id="statTotal">—</div><div class="stat-foot">Saved in this workspace</div></article>
-        <article class="stat-card"><div class="stat-top"><span>Ready for hand-off</span><span class="stat-glyph glyph-green">✓</span></div><div class="stat-number" id="statApproved">—</div><div class="stat-foot">A person still approves</div></article>
-        <article class="stat-card"><div class="stat-top"><span>Needs a second look</span><span class="stat-glyph glyph-amber">◷</span></div><div class="stat-number" id="statReview">—</div><div class="stat-foot">One detail needs attention</div></article>
-        <article class="stat-card"><div class="stat-top"><span>Stopped for a reason</span><span class="stat-glyph glyph-red">↗</span></div><div class="stat-number" id="statRejected">—</div><div class="stat-foot">Duplicate or supplier mismatch</div></article>
-        <article class="stat-card feedback-stat"><div class="stat-top"><span>Reviewer feedback</span><span class="stat-glyph glyph-blue">↺</span></div><div class="stat-number" id="statFeedback">—</div><div class="stat-foot"><span id="statOverrides">0</span> disposition overrides with rationale</div></article>
+    <!-- VIEW 3: REVIEW WORKBENCH -->
+    <section class="view" id="view-workbench">
+      <div class="workbench-container" id="workbenchContainer">
+        <div class="workbench-empty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          <b>No Case Active in Workbench</b>
+          <span>Select an exception from the Exception Queue or run a new review from the Review Desk.</span>
+          <button class="btn btn-primary" data-goto="desk" style="margin-top: 14px;">Go to Review Desk</button>
+        </div>
       </div>
-      <section class="insight-grid" aria-label="Local case analytics">
-        <article class="insight-card activity-insight"><div class="insight-heading"><div><div class="overline">THE PAST SEVEN DAYS</div><h3>Work through the week</h3><p>Cases saved in review history</p></div><span class="chart-note">FROM YOUR CASE HISTORY</span></div><div class="activity-chart" id="activityChart" aria-label="Daily case volume"></div><div class="chart-foot"><span id="activityTotal">0 cases in this window</span><span>By calendar day</span></div></article>
-        <article class="insight-card outcome-insight"><div class="insight-heading"><div><div class="overline">ALL SAVED CASES</div><h3>Where they landed</h3><p>First-pass recommendations</p></div><span class="mix-total" id="mixTotal">0</span></div><div class="mix-content"><div class="donut-chart" id="outcomeDonut"><div><b id="donutTotal">0</b><small>cases</small></div></div><div class="mix-legend"><div><i class="legend-approve"></i><span>Ready for hand-off</span><b id="mixApproved">0</b></div><div><i class="legend-review"></i><span>Needs a second look</span><b id="mixReview">0</b></div><div><i class="legend-reject"></i><span>Stopped for a reason</span><b id="mixRejected">0</b></div></div></div></article>
+    </section>
+
+    <!-- VIEW 4: VENDOR INTELLIGENCE -->
+    <section class="view" id="view-vendors">
+      <div class="page-intro">
+        <div class="overline">SUPPLIER MASTER DATA & GOVERNANCE</div>
+        <h1>Vendor Intelligence</h1>
+        <p>Monitor vendor risk ratings, bank account verification, lifetime spend, and anomaly patterns.</p>
+      </div>
+
+      <div class="vendor-kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Active Vendors</div>
+          <div class="kpi-value" id="vStatCount">0</div>
+          <div class="kpi-sub">In procurement master</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Lifetime Invoiced</div>
+          <div class="kpi-value" id="vStatSpend">$0.00</div>
+          <div class="kpi-sub">Across all PO commitments</div>
+        </div>
+        <div class="kpi-card kpi-card-critical">
+          <div class="kpi-label">Flagged / Unverified Vendors</div>
+          <div class="kpi-value" id="vStatFlagged">0</div>
+          <div class="kpi-sub">Requiring KYC & banking verification</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Average Processing Turnaround</div>
+          <div class="kpi-value">1.8 days</div>
+          <div class="kpi-sub">From intake to payment release</div>
+        </div>
+      </div>
+
+      <div class="vendor-toolbar">
+        <div class="search-input-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="vendorSearch" type="search" placeholder="Search vendor by name, category, tax ID…">
+        </div>
+        <select id="vendorFilterStatus">
+          <option value="">All Verification States</option>
+          <option value="VERIFIED">Verified Vendors</option>
+          <option value="UNVERIFIED">Unverified / Flagged</option>
+        </select>
+        <select id="vendorFilterRisk">
+          <option value="">All Risk Ratings</option>
+          <option value="LOW">Low Risk</option>
+          <option value="MODERATE">Moderate Risk</option>
+          <option value="CRITICAL">Critical Risk</option>
+        </select>
+      </div>
+
+      <div class="vendor-grid" id="vendorGrid">
+        <div class="recent-empty">Loading vendor profiles…</div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: CASE HISTORY -->
+    <section class="view" id="view-history">
+      <div class="page-intro">
+        <div class="overline">COMPLIANCE & AUDIT ARCHIVE</div>
+        <h1>Historical Review Records</h1>
+        <p>Search all historical invoice runs, inspect extracted evidence, review decisions, and export compliance reports.</p>
+      </div>
+
+      <div class="archive-toolbar">
+        <div class="search-input-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="searchRuns" type="search" placeholder="Search supplier, invoice ref, PO, case code…">
+        </div>
+        <select id="filterRuns">
+          <option value="">All Outcomes</option>
+          <option value="APPROVE">Ready for Hand-Off (Approve)</option>
+          <option value="REVIEW">Needs Review (Exceptions)</option>
+          <option value="REJECT">Stopped (Duplicates & Fraud)</option>
+        </select>
+        <button class="btn btn-secondary" id="exportRuns">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download CSV Archive
+        </button>
+      </div>
+
+      <div class="archive-table-wrap">
+        <table class="archive-table">
+          <thead>
+            <tr>
+              <th>CASE</th>
+              <th>SUPPLIER</th>
+              <th>INVOICE REF</th>
+              <th>PO COMMITMENT</th>
+              <th>AMOUNT</th>
+              <th>RISK</th>
+              <th>OUTCOME</th>
+              <th>REVIEWED AT</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="archiveRows">
+            <tr><td colspan="9" class="empty-table">No historical records found.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="archive-detail" id="archiveDetail">
+        <div class="detail-empty">
+          <b>Select an invoice record to inspect complete verification details and download dossier.</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: ANALYTICS -->
+    <section class="view" id="view-analytics">
+      <div class="page-intro">
+        <div class="overline">FINANCE OPERATIONS DASHBOARD</div>
+        <h1>Accounts Payable Analytics</h1>
+        <p>Comprehensive operational metrics, financial exposure, spend distribution, and discrepancy tracking.</p>
+      </div>
+
+      <!-- Financial Metrics Grid -->
+      <div class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Total Invoices Processed</span>
+            <span class="stat-glyph glyph-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </span>
+          </div>
+          <div class="stat-number" id="statTotal">—</div>
+          <div class="stat-foot">Total lifetime reviews recorded</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Total Invoiced Value</span>
+            <span class="stat-glyph glyph-green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </span>
+          </div>
+          <div class="stat-number" id="statInvoicedValue">—</div>
+          <div class="stat-foot">Processed through control checks</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Pending Review Value</span>
+            <span class="stat-glyph glyph-amber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </span>
+          </div>
+          <div class="stat-number" id="statPendingValue">—</div>
+          <div class="stat-foot"><span id="statReview">0</span> open review items</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Discrepancies Intercepted</span>
+            <span class="stat-glyph glyph-red">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </span>
+          </div>
+          <div class="stat-number" id="statDiscrepancies">—</div>
+          <div class="stat-foot"><span id="statDuplicates">0</span> duplicate invoices stopped</div>
+        </article>
+      </div>
+
+      <!-- Analytics Visualizations Grid -->
+      <section class="analytics-charts-grid">
+        <!-- 7-Day Trend Chart -->
+        <article class="insight-card">
+          <div class="insight-heading">
+            <div>
+              <div class="overline">7-DAY ACTIVITY TREND</div>
+              <h3>Review Volume & Daily Distribution</h3>
+              <p>Breakdown by automated approval and exception routing</p>
+            </div>
+            <span class="chart-badge">PAST 7 DAYS</span>
+          </div>
+          <div class="activity-chart" id="activityChart"></div>
+          <div class="chart-foot">
+            <span id="activityTotal">0 cases in this period</span>
+            <div class="chart-legend-inline">
+              <span><i class="legend-dot dot-approve"></i> Approved</span>
+              <span><i class="legend-dot dot-review"></i> Review</span>
+              <span><i class="legend-dot dot-reject"></i> Rejected</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Outcome Mix & Exceptions -->
+        <article class="insight-card">
+          <div class="insight-heading">
+            <div>
+              <div class="overline">EXCEPTION DISTRIBUTION</div>
+              <h3>Exceptions by Control Category</h3>
+              <p>Root causes behind flagged invoices</p>
+            </div>
+          </div>
+          <div class="exception-dist-chart" id="exceptionDistChart">
+            <!-- Rendered by JS -->
+          </div>
+        </article>
+
+        <!-- Vendor Spend Breakdown -->
+        <article class="insight-card span-2">
+          <div class="insight-heading">
+            <div>
+              <div class="overline">SUPPLIER VOLUME & COMMITMENTS</div>
+              <h3>Top Vendor Invoicing & Spend Concentration</h3>
+              <p>Cumulative billing totals across active suppliers</p>
+            </div>
+          </div>
+          <div class="vendor-spend-table" id="vendorSpendTable">
+            <!-- Rendered by JS -->
+          </div>
+        </article>
       </section>
     </section>
 
-    <section class="view" id="view-history">
-      <div class="page-intro"><div class="overline">SAVED REVIEWS</div><h1>Case history</h1><p>Find an earlier review, open its checks, or export the record for your notes.</p></div>
-      <div class="archive-toolbar"><div class="search-box"><span>⌕</span><input id="searchRuns" type="search" aria-label="Search historical case records" placeholder="Search supplier, invoice, or case…"></div><select id="filterRuns" aria-label="Filter case history by outcome"><option value="">All outcomes</option><option value="APPROVE">Ready for hand-off</option><option value="REVIEW">Needs a second look</option><option value="REJECT">Stopped for a reason</option></select><button class="outline-button" id="exportRuns">Download CSV ↓</button></div>
-      <div class="archive-table-wrap"><table class="archive-table"><thead><tr><th>CASE</th><th>SUPPLIER</th><th>INVOICE</th><th>AMOUNT</th><th>OUTCOME</th><th>REVIEWED</th><th></th></tr></thead><tbody id="archiveRows"><tr><td colspan="7" class="empty-table">No reviews yet.</td></tr></tbody></table></div>
-      <div class="archive-detail" id="archiveDetail"><div class="detail-empty"><span>↗</span><b>Choose a case to see the details.</b><small>The checks and source text are kept with the review.</small></div></div>
-    </section>
-
+    <!-- VIEW 7: HOW IT WORKS -->
     <section class="view" id="view-policy">
-      <div class="page-intro"><div class="overline">THE CHECKS BEHIND EACH REVIEW</div><h1>How it works</h1><p>A rules-based first pass. No payment is made, and fuzzy matches always wait for a person.</p></div>
-      <div class="map-layout"><div class="map-flow">
-        <article class="map-node"><span class="map-node-num">01</span><div><b>Read the document</b><p>Extract the invoice ID, date, supplier, PO reference, currency, and amount from selectable PDF text.</p></div><span class="map-node-state">INPUT</span></article>
-        <div class="map-connector"></div><article class="map-node"><span class="map-node-num">02</span><div><b>Check identity & history</b><p>Fingerprint duplicate submissions. Normalize supplier names. Similar names suggest a human check; they do not silently pass.</p></div><span class="map-node-state">IDENTITY</span></article>
-        <div class="map-connector"></div><article class="map-node"><span class="map-node-num">03</span><div><b>Reconcile the commitment</b><p>Match the PO, approved status, currency, amount tolerance, subtotal/tax arithmetic, and previously approved billing.</p></div><span class="map-node-state">CONTROL</span></article>
-        <div class="map-connector"></div><div class="outcome-branches"><article class="branch branch-good"><span>✓</span><b>Ready for hand-off</b><small>Clean match; a person still approves.</small></article><article class="branch branch-wait"><span>◷</span><b>Needs a second look</b><small>Incomplete, unclear, or outside the agreed tolerance.</small></article><article class="branch branch-stop"><span>↗</span><b>Stopped for a reason</b><small>Duplicate submission or supplier mismatch.</small></article></div>
-      </div><aside class="policy-aside"><div class="policy-aside-icon">✳</div><div class="overline">A FEW CLEAR LIMITS</div><h3>This first pass will not</h3><ul><li>Send or initiate a payment</li><li>Auto-match a fuzzy supplier name</li><li>Read text from a scanned image</li><li>Approve spending above the PO</li><li>Hide the reason for a decision</li></ul><div class="policy-note">Field coverage counts what was extracted. It does not override a failed check.</div></aside></div>
-      <div class="demo-cases"><div class="overline">REHEARSE THE EDGE CASES</div><div class="demo-case-grid" id="policyCases"></div></div>
+      <div class="page-intro">
+        <div class="overline">INTERNAL CONTROL ARCHITECTURE</div>
+        <h1>How Mosaic AP Works</h1>
+        <p>A deterministic, evidence-backed accounts payable pipeline designed for auditability and fraud prevention.</p>
+      </div>
+
+      <!-- 7-Stage Pipeline Visualizer -->
+      <div class="pipeline-flow-wrapper">
+        <div class="pipeline-stage">
+          <span class="stage-step">01</span>
+          <b>Intake & OCR</b>
+          <p>Extracts fields, line items, and detects digital text vs scanned images.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">
+          <span class="stage-step">02</span>
+          <b>Identity & Duplicates</b>
+          <p>Cryptographic SHA-256 fingerprinting and historical collision detection.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">
+          <span class="stage-step">03</span>
+          <b>PO Commitment</b>
+          <p>Reconciles PO authorization, approved status, and cumulative spending cap.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage highlight-stage">
+          <span class="stage-step">04</span>
+          <b>3-Way Matching</b>
+          <p>Compares PO lines vs Goods Receipt Notes (GRNs) vs Invoice quantities & unit prices.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">
+          <span class="stage-step">05</span>
+          <b>Financial Math</b>
+          <p>Validates subtotal + tax = total, currency consistency, and payment terms.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage highlight-stage">
+          <span class="stage-step">06</span>
+          <b>Risk Scoring Engine</b>
+          <p>Calculates 0-100 explainable risk score with transparent point contributions.</p>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">
+          <span class="stage-step">07</span>
+          <b>Human Governance</b>
+          <p>Reviewer disposition with required rationale, feedback logging, and immutable audit trail.</p>
+        </div>
+      </div>
+
+      <!-- Policy Boundaries & Limits -->
+      <div class="policy-grid">
+        <div class="policy-card">
+          <div class="policy-card-head">
+            <span class="policy-icon">✓</span>
+            <b>What Mosaic AP Does Automatically</b>
+          </div>
+          <ul>
+            <li>Extracts invoice line items, SKUs, quantities, and rates from text PDFs.</li>
+            <li>Reconciles line items against PO lines and Goods Receipt Notes (GRNs).</li>
+            <li>Flags quantity discrepancies where invoiced units exceed goods received.</li>
+            <li>Calculates an explainable 0-100 risk score with explicit contributing factors.</li>
+            <li>Detects duplicate submissions and reference collisions across vendors.</li>
+            <li>Maintains an immutable audit trail of reviewer notes, overrides, and corrections.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card policy-card-warning">
+          <div class="policy-card-head">
+            <span class="policy-icon policy-icon-stop">✕</span>
+            <b>Strict Governance Boundaries (What Mosaic Never Does)</b>
+          </div>
+          <ul>
+            <li>Never initiates or executes a bank disbursement or wire transfer.</li>
+            <li>Never auto-approves invoices with fuzzy supplier matches.</li>
+            <li>Never guesses numbers or text from image-only scans without OCR.</li>
+            <li>Never silently overrides purchase order budgets or approved tolerances.</li>
+            <li>Never allows a model recommendation override without a recorded rationale.</li>
+            <li>Never hallucinates AI facts; all assistant answers cite structured evidence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Edge-Case Scenarios Rehearsal -->
+      <div class="demo-cases-section">
+        <div class="overline">INTERACTIVE TEST SUITE</div>
+        <h2>Rehearse AP Edge Cases & Controls</h2>
+        <p>Click any scenario below to immediately load it into the Review Desk and see the automated controls in action.</p>
+        <div class="demo-case-grid" id="policyCases"></div>
+      </div>
     </section>
 
-    <footer class="app-footer"><span>◈ MOSAIC AP</span><span>Review controls · synthetic sample records · <a href="/api/health" target="_blank" rel="noreferrer">service status</a></span><span>Evidence first. People decide.</span></footer>
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span class="footer-brand">◈ Mosaic AP Enterprise</span>
+        <span>Version 2.0.0 · Production Grade AP Architecture</span>
+      </div>
+      <div class="footer-center">
+        <span>Evidence first. Strict governance. Deterministic controls.</span>
+      </div>
+      <div class="footer-right">
+        <a href="/api/health" target="_blank" rel="noreferrer">Service Health API ↗</a>
+      </div>
+    </footer>
   </main>
 </div>
-<div class="command-backdrop" id="commandBackdrop" hidden><div class="command-palette" role="dialog" aria-modal="true" aria-label="Mosaic command menu"><div class="command-search-row"><span>⌕</span><input id="commandSearch" type="search" placeholder="Where would you like to go?" autocomplete="off"><kbd>ESC</kbd></div><div class="command-results" id="commandResults"></div><div class="command-footer"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>ENTER</kbd> choose</span><span>Ctrl K · command menu</span></div></div></div>
+
+<!-- Command Palette Modal -->
+<div class="command-backdrop" id="commandBackdrop" hidden>
+  <div class="command-palette" role="dialog" aria-modal="true" aria-label="Mosaic Command Palette">
+    <div class="command-search-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input id="commandSearch" type="search" placeholder="Search commands, views, POs, vendors… (Type to search)" autocomplete="off">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="command-results" id="commandResults"></div>
+    <div class="command-footer">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span>
+      <span><kbd>ENTER</kbd> select</span>
+      <span><kbd>ESC</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<!-- Global PO Register Modal -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close modal">×</button>
+    <div class="overline">PURCHASING REGISTER & COMMITMENTS</div>
+    <h2 id="modalTitle">Connected Purchase Orders</h2>
+    <p><strong id="poCount">0</strong> authorized procurement commitments in database. Used as reference truth for 3-way matching.</p>
+    <div class="po-modal-table" id="poModalTable"></div>
+    <div class="modal-foot">
+      <span>Master Source: <code>data/purchase_orders/purchase_orders.csv</code></span>
+      <button class="btn btn-secondary btn-sm" id="closePoModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Feedback -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose">×</button><div class="overline">PURCHASING REGISTER</div><h2 id="modalTitle">Commitments in this demo</h2><p><strong id="poCount">0</strong> purchase orders loaded. These fictional purchase orders are the reference point for invoice review.</p><div class="po-modal-table" id="poModalTable"></div><div class="modal-foot">To change demo records, edit <code>data/purchase_orders/purchase_orders.csv</code>.</div></div></div>
+
 <script src="/app.js" defer></script>
-</body></html>
-
-
+</body>
+</html>
