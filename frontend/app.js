@@ -130,8 +130,24 @@ async function resetWorkspaceSession() {
     state.currentWorkbenchCase = null;
     state.latest = null;
     state.file = null;
-    $("#deskResult").innerHTML = `<div class="recent-empty">Select a scenario or upload a PDF to begin review.</div>`;
-    $("#caseTopline").hidden = true;
+    const fileInput = $("#invoiceFile");
+    if (fileInput) fileInput.value = "";
+    $("#filePill").hidden = true;
+
+    const canvas = $("#evidenceCanvas");
+    if (canvas) {
+      canvas.innerHTML = `
+        <div class="empty-case">
+          <div class="empty-illustration">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <strong>Select an invoice scenario or upload a PDF</strong>
+          <span>Mosaic will extract line items, run 3-way matching against POs & Goods Receipts (GRNs), compute explainable risk, and prepare audit records.</span>
+        </div>`;
+    }
+    const topline = $("#caseTopline");
+    if (topline) topline.hidden = true;
+
     await loadWorkspace();
     renderQueue();
     setView("desk");
@@ -1564,6 +1580,19 @@ async function loadWorkspace() {
 
 // Global Initialization
 function init() {
+  // Theme initialization
+  const themePicker = $("#themePicker");
+  const savedTheme = localStorage.getItem("mosaic_theme") || "indigo";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  if (themePicker) {
+    themePicker.value = savedTheme;
+    themePicker.addEventListener("change", e => {
+      const nextTheme = e.target.value;
+      document.documentElement.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("mosaic_theme", nextTheme);
+    });
+  }
+
   $("#today").textContent = new Intl.DateTimeFormat("en-US", {
     weekday: "short", month: "short", day: "numeric"
   }).format(new Date());
